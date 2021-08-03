@@ -12,6 +12,7 @@ import html2canvas from 'html2canvas';
 export class AppComponent {
   public downloadPdf() {
     var data = document.getElementById('pdfDownload');
+    console.log(typeof data);
     $('pdfOpenHide').attr('hidden', true);
     html2canvas(data).then(canvas => {
       // Few necessary setting options
@@ -21,7 +22,7 @@ export class AppComponent {
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        pdf.save('new-file.pdf');
+      pdf.save('new-file.pdf');
       window.open(
         pdf.output('bloburl', { filename: 'new-file.pdf' }),
         '_blank'
